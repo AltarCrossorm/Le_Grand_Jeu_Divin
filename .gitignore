@@ -1,3 +1,6 @@
+# Specific files who will not be pushed into the project
+token_config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
