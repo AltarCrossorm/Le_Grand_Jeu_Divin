@@ -9,4 +9,4 @@ GUILD_ID = 1039662750563061770
 ROLE_ID_TEST = 1079310208062464051
 
 # Database directory
-DATABASE_DIR = "./database/database_DB.db"
+DATABASE_DIR = "./database.db"

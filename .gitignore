@@ -1,5 +1,6 @@
 # Specific files who will not be pushed into the project
 token_config.py
+*.sql
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
