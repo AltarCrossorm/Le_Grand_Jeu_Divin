@@ -38,12 +38,12 @@ class experience(commands.Cog):
         message_length = len(message.content)
 
         # Checks if the used exists in the Database
-        query_ck = f"""
+        query_check = f"""
         SELECT id, xp 
         FROM levels 
         WHERE id = {user_id};
         """
-        self.cur.execute(query_ck)
+        self.cur.execute(query_check)
 
         # Checks if user is empty or not
         user = self.cur.fetchone()
@@ -59,7 +59,7 @@ class experience(commands.Cog):
 
             # Write the xp gain into the .log file
             with open("./logs/logs_levels_DB.log", "a") as fichier:
-                fichier.write(f"{datetime.datetime.now()} | INFO | user : @{message.author} | xp gained : {10 + 0.01 * message_length} | channel : {message.channel.id} ({message.channel.name})\n")
+                fichier.write(f"{datetime.datetime.now()} | INFO | user : @{message.author} | xp gained : {(10 + 0.01 * message_length):.2f} | channel : {message.channel.id} ({message.channel.name})\n")
 
         else:
             # Create a new section for the user
@@ -87,7 +87,12 @@ class experience(commands.Cog):
         if(xp > exp_level):
 
             # Retrive xp from the user, but not the total xp
-            self.cur.execute(f"UPDATE levels SET xp = xp - {exp_level}, level = level +1 WHERE id = {user_id}")
+            query_levelup = f"""
+            UPDATE levels 
+            SET xp = xp - {exp_level}, level = level +1 
+            WHERE id = {user_id}
+            """
+            self.cur.execute(query_levelup)
 
             # Write the user insert into the .log file
             with open("logs\logs_levels_DB.log", "a") as fichier:
@@ -101,8 +106,10 @@ class experience(commands.Cog):
 
     @commands.command(help = "Display the 5 most experienced users")
     async def topRank(self,ctx):
-        
-        
+        """
+        Display the top 5 most experienced users
+        :param ctx: the context of the message
+        """
         xp = [] # Create list for fetching data
 
         # Fetching the first 5 users into the xp variable
@@ -114,7 +121,7 @@ class experience(commands.Cog):
             xp.append((user_id,user_lv,user_xp)) # Insert data in the list
         
         # make data ready to be displayed
-        description = '\n'.join([f'<@{user_id}>: Level {user_lv} ({user_xp} XP)' for user_id, user_lv, user_xp in xp])
+        description = '\n'.join([f'<@{user_id}>: Level {user_lv} ({user_xp:.2f} XP)' for user_id, user_lv, user_xp in xp])
 
         # Create the embed to display de xp top
         e = nextcord.Embed(
