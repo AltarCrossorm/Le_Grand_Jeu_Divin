@@ -27,25 +27,6 @@ async def on_ready(): # message signifiant que le bot est prêt
     print("------------------------")
 
 
-@bot.command(help = "essai de définition dans le !help")
-async def hello(ctx): # nom de l'input
-    await ctx.send("Bonjour maître.")
-
-@bot.command()
-async def repeat(ctx, arg): # nom de l'input
-    print(arg)
-    await ctx.send(f'Venez-vous de dire {arg} ?')
-
-@bot.command()
-async def embed(ctx):
-    embed = nextcord.Embed(title="Voici un embed", url="https://google.com", description="voici une description", color=0xFF00FF)
-    embed.set_author(name= ctx.author.display_name, url="https://youtube.tv", icon_url=ctx.author.avatar)
-    embed.set_thumbnail(url=ctx.author.avatar)
-    embed.add_field(name="Labrador",value="Cute Pyra", inline=True)
-    embed.add_field(name="Pyra",value="Cute girl", inline=True)
-    embed.set_footer(text="footer of the embed")
-    await ctx.send(embed=embed)
-
 @bot.command()
 async def shutdown(ctx):
     if(ctx.author.id == ID_DEV or ctx.author.id == ID_OWNER):

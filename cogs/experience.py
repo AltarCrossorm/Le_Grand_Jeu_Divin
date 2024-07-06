@@ -127,4 +127,8 @@ class experience(commands.Cog):
     
 
 async def setup(bot):
+    """
+    function used to setup the class in the bot
+    :param bot: the client of the bot
+    """
     bot.add_cog(experience(bot))
