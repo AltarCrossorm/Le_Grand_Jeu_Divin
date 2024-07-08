@@ -52,7 +52,7 @@ class experience(commands.Cog):
             # Grants more xp by the size of the text
             query_update = f"""
             UPDATE levels
-            SET xp = xp + (5 + 0.02 * {message_length}), xp_total = xp_total + (5 + 0.02 * {message_length})
+            SET xp = xp + (5 + 0.02 * {message_length:.2f}), xp_total = xp_total + (5 + 0.02 * {message_length:.2f})
             WHERE id = {user_id};
             """
             self.cur.execute(query_update)
