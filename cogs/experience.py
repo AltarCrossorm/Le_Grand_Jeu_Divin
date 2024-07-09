@@ -131,6 +131,27 @@ class experience(commands.Cog):
         )
 
         await ctx.send(embed=e) # Send th message
+
+    @commands.command(help = "draws The level and the number of exp before a level up")
+    async def rank(self,ctx):
+        """
+        Send the acutal experience, the remaining xp quantoty before leveling up and the percentage where the user is
+        :param ctx: the context of the message
+        """
+        content = self.cur.execute(f"SELECT * FROM levels WHERE id = {ctx.author.id}").fetchone()
+        exp_level = 10 * exp(0.2*content[2])
+        desc = f"""
+Actual xp : {content[1]:.2f}.
+Xp remainig before levelup : {exp_level:.2f} `[{(content[1] / exp_level)*100:.2f} %]`
+"""
+
+        e = nextcord.Embed(
+            title = f"Rank of : @{ctx.author.name}",
+            description = desc,
+            colour=(nextcord.Colour.red())
+        )
+
+        await ctx.reply(embed = e)
     
 
 async def setup(bot):

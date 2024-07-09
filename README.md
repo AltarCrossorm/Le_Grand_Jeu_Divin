@@ -31,8 +31,3 @@ Link to the discord serveur : [https://discord.gg/Le_Grand_Jeu_Divin](https://di
 - cogs : folder of class used for multiple functions which are :
   - experience.py : the levels and xp system for all users
   - tests.py : some commands to test the servers' communications with the bot
-
-```plantuml
-(test)
-test->(yes)
-```
