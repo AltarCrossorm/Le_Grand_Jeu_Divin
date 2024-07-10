@@ -22,7 +22,7 @@ Link to the discord serveur : [https://discord.gg/Le_Grand_Jeu_Divin](https://di
 
 💫 Rejoignez-nous dès maintenant dans le serveur RP **Le Grand Jeu Divin** et plongez dans un univers où le destin se joue aux côtés des dieux. Laissez votre imagination s'envoler et découvrez si vous avez ce qu'il faut pour survivre à ce grand jeu interminable !
 
-🔗 Rejoignez-nous dès aujourd'hui sur [lien du serveur] et préparez-vous à vivre une aventure incroyable !
+🔗 Rejoignez-nous dès aujourd'hui sur [Le Grand Jeu Divin](https://discord.gg/CaYpzVummm) et préparez-vous à vivre une aventure incroyable !
 
 ## File organization
 
