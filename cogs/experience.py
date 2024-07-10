@@ -59,7 +59,7 @@ class experience(commands.Cog):
 
             # Write the xp gain into the .log file
             with open("./logs/logs_levels_DB.log", "a") as fichier:
-                fichier.write(f"{datetime.datetime.now()} | INFO | user : @{message.author} | xp gained : {(10 + 0.01 * message_length):.2f} | channel : {message.channel.id} ({message.channel.name})\n")
+                fichier.write(f"{datetime.datetime.now()} | INFO | user : @{message.author} | xp gained : {(10 + 0.01 * message_length):.2f} | channel : {message.channel.id}\n")
 
         else:
             # Create a new section for the user
@@ -138,13 +138,20 @@ class experience(commands.Cog):
         Send the acutal experience, the remaining xp quantoty before leveling up and the percentage where the user is
         :param ctx: the context of the message
         """
+
+        # Getting variables
         content = self.cur.execute(f"SELECT * FROM levels WHERE id = {ctx.author.id}").fetchone()
         exp_level = 10 * exp(0.2*content[2])
+        percentage = (content[1] / exp_level)*100
+        lengh = 40
+
+        # Fetching and adding a description
         desc = f"""
 Actual xp : {content[1]:.2f}.
-Xp remainig before levelup : {exp_level:.2f} `[{(content[1] / exp_level)*100:.2f} %]`
+Xp remainig before levelup : {exp_level:.2f} `[{percentage:.2f} %]`
+`[{"|"*int(lengh*(percentage/100))+" "*int(lengh*((100-percentage)/100))}]`
 """
-
+        # Generating the embed
         e = nextcord.Embed(
             title = f"Rank of : @{ctx.author.name}",
             description = desc,
