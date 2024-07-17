@@ -19,9 +19,9 @@ class experience(commands.Cog):
 
         try: # Checking if the database is opennable
             self.con.cursor()
-            return print("Database ready")
+            return print("Levels table ready")
         except Exception as ex:
-            return print("Database Error")
+            return print("Levels table acces error")
     
     @commands.Cog.listener()
     async def on_message(self,message):
@@ -65,7 +65,7 @@ class experience(commands.Cog):
             # Create a new section for the user
             query_insert = f"""
             INSERT INTO levels(id, xp, level, xp_total)
-            VALUES({user_id}, 5, 0, 5);
+            VALUES({user_id}, 5+0.02*{message_length:.2f}, 0, 5+0.02*{message_length:.2f});
             """
             self.cur.execute(query_insert)
 
@@ -113,7 +113,7 @@ class experience(commands.Cog):
         xp = [] # Create list for fetching data
 
         # Fetching the first 5 users into the xp variable
-        for row in self.cur.execute("SELECT * FROM levels;").fetchmany(5): 
+        for row in self.cur.execute("SELECT * FROM levels ORDER BY xp_total DESC;").fetchmany(5): 
             user_id = row[0] # Getting user id
             user_lv = row[2] # Getting user level
             user_xp = row[3] # Getting user total xp
@@ -121,7 +121,10 @@ class experience(commands.Cog):
             xp.append((user_id,user_lv,user_xp)) # Insert data in the list
         
         # make data ready to be displayed
-        description = '\n'.join([f'<@{user_id}>: Level {user_lv} ({user_xp:.2f} XP)' for user_id, user_lv, user_xp in xp])
+        try:
+            description = '\n'.join([f'{i+1} : <@{user_id}>: Level {user_lv} ({user_xp:.2f} XP)' for i, (user_id, user_lv, user_xp) in enumerate(xp)])
+        except Exception as e:
+            await ctx.send(e)
 
         # Create the embed to display de xp top
         e = nextcord.Embed(
@@ -159,6 +162,7 @@ Xp remainig before levelup : {exp_level:.2f} `[{percentage:.2f} %]`
         )
 
         await ctx.reply(embed = e)
+        
     
 
 async def setup(bot):

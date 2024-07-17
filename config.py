@@ -1,3 +1,5 @@
+import re
+
 # Prefix for all text commands
 COMMAND_PREFIX = '!'
 
@@ -10,3 +12,8 @@ ROLE_ID_TEST = 1079310208062464051
 
 # Database directory
 DATABASE_DIR = "./database.db"
+
+# Regular expressions for objects
+MESSAGE_URL = [re.compile(r'https://discord.com/channels/(\d+)/(\d+)/(\d+)'),
+               re.compile(r'https://canary.discord.com/channels/(\d+)/(\d+)/(\d+)'),
+               re.compile(r'https://ptb.discord.com/channels/(\d+)/(\d+)/(\d+)')]
