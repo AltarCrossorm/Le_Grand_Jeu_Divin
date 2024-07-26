@@ -9,8 +9,10 @@ class experience(commands.Cog):
 
     def __init__(self, bot):
         """
-        Initialize experience class
-        :param bot: The bot Discord instancy.
+        # __init__
+        ###### constructor
+        #### Initialize experience class
+        - `bot` : The bot Discord instancy.
         """
 
         self.bot = bot
@@ -26,8 +28,10 @@ class experience(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self,message):
         """
-        Event invoked whenever a message can be seen by the bot
-        :param message: The message sent.
+        # on_message
+        ###### listener
+        #### Event invoked whenever a message can be seen by the bot
+        - `message` : The message sent.
         """
 
         if message.author.bot: # Checks if the sender isn't a bot 

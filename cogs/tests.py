@@ -44,18 +44,22 @@ class tests(commands.Cog):
     @commands.command(help = "replies with what you had sent to the bot")
     async def repeat(self, ctx,*, message):
         """
-        Send exactly the message sent after \"!repeat\"
-        :param ctx:     the context of the message
-        :param *:       defines [message] as all the content
-        :param message: the list of character sent to the bot
+        # repeat
+        ###### bot command
+        #### Send exactly the message sent after \"!repeat\"
+        - `ctx` : the context of the message
+        - `*` : defines `[message]` as all the content
+        - `message` : the list of character sent to the bot
         """
         await ctx.reply(f'Venez-vous de dire {message} ?')
 
     @commands.command(help = "Send a basic embed")
     async def embed(self, ctx):
         """
-        Send a sample embed, can be used as a sample for anything
-        :param ctx: the context of the message
+        # embed
+        ###### bot command
+        #### Send a sample embed, can be used as a sample for anything
+        - `ctx` : the context of the message
         """
         embed = nextcord.Embed(title="Voici un embed", url="https://google.com", description="voici une description", color=0xFF00FF)
         embed.set_author(name= ctx.author.display_name, url="https://youtube.tv", icon_url=ctx.author.avatar)

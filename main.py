@@ -17,7 +17,9 @@ INTENTS.members = True
 @bot.event
 async def on_ready(): 
     """
-    Startup command for the bot
+    # on_ready
+    ##### bot event
+    Startup command for the bot, load all cogs
     """
     await bot.change_presence(status=nextcord.Status.idle, activity=nextcord.Game('Guide de développement de bot pour les nuls'))
 
@@ -33,6 +35,12 @@ async def on_ready():
 
 @bot.command()
 async def shutdown(ctx):
+    """
+    # shutdown
+    ###### bot command
+    #### Shut down the bot
+    - `ctx` : the context of the message sent
+    """
     if(ctx.author.id == ID_DEV or ctx.author.id == ID_OWNER):
         with open("logs/logs_sessions.log", "a") as fichier:
             fichier.write(f"{datetime.datetime.now()} | INFO | bot shutdown by {ctx.author}\n")
